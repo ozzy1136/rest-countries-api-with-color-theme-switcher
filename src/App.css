@@ -1,38 +1,86 @@
-.App {
-	text-align: center;
+@font-face {
+	font-family: "Nunito Sans Light";
+	src: url("../public/NunitoSans-Light.ttf") format("truetype");
+	font-weight: 300;
 }
 
-.App-logo {
-	height: 40vmin;
-	pointer-events: none;
+@font-face {
+	font-family: "Nunito Sans Semi Bold";
+	src: url("../public/NunitoSans-SemiBold.ttf") format("truetype");
+	font-weight: 600;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
-	}
+@font-face {
+	font-family: "Nunito Sans Extra Bold";
+	src: url("../public/NunitoSans-ExtraBold.ttf") format("truetype");
+	font-weight: 800;
 }
 
-.App-header {
-	background-color: #282c34;
+:root {
+	/* Fonts */
+	--ff-light: "Nunito Sans Light";
+	--ff-semibold: "Nunito Sans Semi Bold";
+	--ff-extrabold: "Nunito Sans Extra Bold";
+
+	/* Colors */
+	--dark-elements: hsl(209, 23%, 22%);
+	--dark-text: hsl(0, 0%, 100%);
+	--dark-bg: hsl(207, 26%, 17%);
+	--light-elements: hsl(0, 0%, 100%);
+	--light-text: hsl(200, 15%, 8%);
+	--light-bg: hsl(0, 0%, 98%);
+	--light-input: hsl(0, 0%, 52%);
+
+	--bgc-app: var(--light-bg);
+	--bgc-app-header: var(--light-elements);
+	--c-text: var(--light-text);
+	--bxsh: 0px 1px 6px hsl(0, 0%, 92%);
+}
+
+.app {
 	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
+	background-color: var(--bgc-app);
+	color: var(--c-text);
+}
+
+.app-header {
+	--content-columns: 1fr auto;
+	--page-gap-size: 5vw;
+	background-color: var(--bgc-app-header);
 	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
+	padding-block: 5vh;
+	box-shadow: var(--bxsh);
 }
 
-.App-link {
-	color: #61dafb;
+.app-header-heading {
+	grid-column: wrapper-start / span 1;
 }
 
-@keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+.app-header-heading-text {
+	font-family: var(--ff-extrabold);
+	font-size: 1rem;
+}
+
+.app-header-themeToggle {
+	grid-column: span 1 / wrapper-end;
+	justify-self: flex-end;
+}
+
+.app-header-themeToggle-button {
+	border: unset;
+	background: unset;
+	min-width: 44px;
+	min-height: 44px;
+	color: inherit;
+	font-size: 1rem;
+	font-family: var(--ff-semibold);
+}
+
+/* Theme styles */
+
+.app.dark {
+	--bgc-app: var(--dark-bg);
+	--bgc-app-header: var(--dark-elements);
+	--c-text: var(--dark-text);
+	--bxsh: none;
 }
