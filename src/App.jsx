@@ -2,6 +2,7 @@ import "./App.css";
 
 import { useState } from "react";
 import AppHeader from "./AppHeader";
+import SearchFilters from "./SearchFilters";
 
 // https://restcountries.com/v3.1/all?fields=name,tld,currencies,capital,region,subregion,languages,borders,population,flags
 export default function App() {
@@ -21,7 +22,7 @@ export default function App() {
 
 	return (
 		<div
-			className={["app", darkMode ? "dark" : undefined]
+			className={["l-app", darkMode ? "dark" : undefined]
 				.filter((curr) => curr)
 				.join(" ")}
 		>
