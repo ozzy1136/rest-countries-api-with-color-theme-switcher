@@ -27,6 +27,7 @@ export default function App() {
 				.join(" ")}
 		>
 			<AppHeader darkMode={darkMode} setDarkMode={setDarkMode} />
+			<SearchFilters />
 		</div>
 	);
 }
