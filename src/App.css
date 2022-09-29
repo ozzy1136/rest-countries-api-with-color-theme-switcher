@@ -57,6 +57,23 @@
 .l-filters {
 	--page-gap-size: 5vw;
 	row-gap: 6vh;
+	margin-block-end: 6vh;
+}
+
+.l-cards {
+	--page-gap-size: 15vw;
+	padding-block-end: 12vh;
+	row-gap: 3rem;
+}
+
+.l-loading {
+	grid-column: wrapper;
+	justify-self: center;
+}
+
+.l-emptyList {
+	grid-column: wrapper;
+	justify-self: center;
 }
 
 .app-header-heading {
@@ -126,6 +143,45 @@
 	color: inherit;
 	background-color: var(--bgc-elements);
 	min-width: 10rem;
+}
+
+.card {
+	grid-column: wrapper;
+	background-color: var(--bgc-elements);
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.card-flag {
+	background-color: var(--c-text);
+	width: 100%;
+	height: 30vh;
+}
+
+.card-info {
+	padding-block-start: 1.5rem;
+	padding-block-end: 3rem;
+	padding-inline: 1.5rem;
+}
+
+.card-info-name {
+	font-family: var(--ff-extrabold);
+	font-size: 1.5rem;
+	margin-block-end: 0.8rem;
+}
+
+.card-info-text {
+	font-family: var(--ff-light);
+}
+
+.card-info-text + .card-info-text {
+	margin-block-start: 0.4rem;
+}
+
+.card-info-category {
+	font-family: var(--ff-semibold);
 }
 
 /* Theme styles */
