@@ -1,3 +1,5 @@
+import { useRef, useEffect } from "react";
+
 /**
  * @param {Object} props
  * @param {Object} props.data
@@ -16,14 +18,34 @@
  * @param {Array.<string>} props.data.borders
  * @param {number} props.data.population
  */
-export default function CountryCard({ data }) {
+export default function CountryCard({ data, observer, index }) {
+	const flagRef = useRef(null);
+
+	useEffect(() => {
+		let ref;
+
+		if (flagRef.current) {
+			ref = flagRef.current;
+			observer.observe(ref);
+		}
+
+		return () => {
+			if (ref) {
+				observer.unobserve(ref);
+			}
+		};
+	}, [observer]);
+
 	return (
 		<article className="card">
-			<object
-				className="card-flag"
-				data-svg={data.flags.svg}
-				type="image/svg+xml"
-			>{`National flag of ${data.name.official}`}</object>
+			<div className="card-flag" id={`card-flag-${index}`} ref={flagRef}>
+				<img
+					className="card-flag-image"
+					data-src={data.flags.png}
+					alt={`National flag of ${data.name.common}`}
+					type="image/png"
+				/>
+			</div>
 			<div className="card-info">
 				<h2 className="card-info-name">{data.name.common}</h2>
 				<p className="card-info-population card-info-text">
