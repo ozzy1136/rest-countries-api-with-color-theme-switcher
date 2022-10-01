@@ -1,18 +1,18 @@
 @font-face {
 	font-family: "Nunito Sans Light";
-	src: url("../public/NunitoSans-Light.ttf") format("truetype");
+	src: url("./NunitoSans-Light.ttf") format("truetype");
 	font-weight: 300;
 }
 
 @font-face {
 	font-family: "Nunito Sans Semi Bold";
-	src: url("../public/NunitoSans-SemiBold.ttf") format("truetype");
+	src: url("./NunitoSans-SemiBold.ttf") format("truetype");
 	font-weight: 600;
 }
 
 @font-face {
 	font-family: "Nunito Sans Extra Bold";
-	src: url("../public/NunitoSans-ExtraBold.ttf") format("truetype");
+	src: url("./NunitoSans-ExtraBold.ttf") format("truetype");
 	font-weight: 800;
 }
 
