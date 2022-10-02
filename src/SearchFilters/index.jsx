@@ -1,6 +1,24 @@
 import { ReactComponent as SearchIcon } from "./search.svg";
+import { useState, useEffect } from "react";
 
-export default function SearchFilters() {
+export default function SearchFilters({
+	setNameQuery,
+	regionQuery,
+	setRegionQuery,
+}) {
+	const [searchValue, setSearchValue] = useState("");
+
+	useEffect(() => {
+		const timeoutId = setTimeout(() => {
+			setNameQuery(searchValue);
+			console.log("nameQuery was set");
+		}, 1000);
+
+		return () => {
+			clearTimeout(timeoutId);
+		};
+	}, [searchValue]);
+
 	return (
 		<div className="l-filters page-section-container">
 			<div className="filters-name">
@@ -8,8 +26,9 @@ export default function SearchFilters() {
 					className="filters-name-input"
 					type="search"
 					name="Search by name"
-					id="text-search-input"
 					placeholder="Search for a country..."
+					value={searchValue}
+					onChange={(e) => setSearchValue(e.target.value)}
 				/>
 				<SearchIcon className="filters-name-icon" />
 			</div>
@@ -17,7 +36,8 @@ export default function SearchFilters() {
 				<select
 					className="filters-region-select"
 					name="regions"
-					id="search-region"
+					value={regionQuery}
+					onChange={(e) => setRegionQuery(e.target.value)}
 				>
 					<option value="">Filter by Region</option>
 					<option>Africa</option>

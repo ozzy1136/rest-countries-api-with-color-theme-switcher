@@ -18,7 +18,7 @@ import { useRef, useEffect } from "react";
  * @param {Array.<string>} props.data.borders
  * @param {number} props.data.population
  */
-export default function CountryCard({ data, observer, index }) {
+export default function CountryCard({ data, observer }) {
 	const flagRef = useRef(null);
 
 	useEffect(() => {
@@ -38,7 +38,7 @@ export default function CountryCard({ data, observer, index }) {
 
 	return (
 		<article className="card">
-			<div className="card-flag" id={`card-flag-${index}`} ref={flagRef}>
+			<div className="card-flag" ref={flagRef}>
 				<img
 					className="card-flag-image"
 					data-src={data.flags.png}
