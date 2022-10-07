@@ -2,19 +2,24 @@
 	font-family: "Nunito Sans Light";
 	src: url("./NunitoSans-Light.ttf") format("truetype");
 	font-weight: 300;
+	font-display: swap;
 }
 
 @font-face {
 	font-family: "Nunito Sans Semi Bold";
 	src: url("./NunitoSans-SemiBold.ttf") format("truetype");
 	font-weight: 600;
+	font-display: swap;
 }
 
 @font-face {
 	font-family: "Nunito Sans Extra Bold";
 	src: url("./NunitoSans-ExtraBold.ttf") format("truetype");
 	font-weight: 800;
+	font-display: swap;
 }
+
+/* Base Rules */
 
 :root {
 	/* Fonts */
@@ -37,6 +42,8 @@
 	--c-search: var(--light-input);
 	--bxsh: 0px 1px 6px hsl(0, 0%, 92%);
 }
+
+/* Layout Rules */
 
 .l-app {
 	min-height: 100vh;
@@ -62,19 +69,47 @@
 
 .l-cards {
 	--page-gap-size: 15vw;
-	padding-block-end: 12vh;
-	row-gap: 3rem;
 }
 
-.l-loading {
+@media screen and (min-width: 768px) {
+	.l-cards {
+		--page-gap-size: 5vw;
+	}
+}
+
+.l-cards-list {
+	grid-column: wrapper;
+}
+
+.l-cards-list-row {
+	display: grid;
+	grid-template-columns: 1fr;
+	column-gap: 4vw;
+}
+
+@media screen and (min-width: 768px) {
+	.l-cards-list-row {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.l-cards-list-row {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.l-loadingCountries {
 	grid-column: wrapper;
 	justify-self: center;
 }
 
-.l-emptyMsg {
+.l-zeroCountries {
 	grid-column: wrapper;
 	justify-self: center;
 }
+
+/* Module Rules */
 
 .app-header-heading {
 	grid-column: wrapper-start / span 1;
@@ -146,32 +181,23 @@
 }
 
 .card {
-	grid-column: wrapper;
+	width: 100%;
 	background-color: var(--bgc-elements);
-	display: flex;
-	flex-direction: column;
 	border-radius: 5px;
 	overflow: hidden;
 }
 
 .card-flag {
-	background-color: var(--c-search);
-	aspect-ratio: 11/6;
+	background-color: var(--c-text);
+	width: 100%;
+	aspect-ratio: 9/6;
 	position: relative;
 }
 
-.card-flag-image {
-	opacity: 0;
-	object-fit: scale-down;
-	object-position: top center;
-}
-
-.card-flag.loaded {
-	background-color: unset;
-}
-
-.card-flag.loaded > .card-flag-image {
-	opacity: 1;
+.card-flag-img {
+	width: 100%;
+	height: 100%;
+	position: absolute;
 }
 
 .card-info {
@@ -186,16 +212,22 @@
 	margin-block-end: 0.8rem;
 }
 
-.card-info-text {
-	font-family: var(--ff-light);
-}
-
 .card-info-text + .card-info-text {
 	margin-block-start: 0.4rem;
 }
 
+.card-info-text {
+	font-family: var(--ff-light);
+}
+
 .card-info-category {
 	font-family: var(--ff-semibold);
+}
+
+/* State Rules */
+
+.is-loading {
+	opacity: 0;
 }
 
 /* Theme styles */

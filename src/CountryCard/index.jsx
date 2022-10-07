@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 /**
  * @param {Object} props
@@ -18,32 +18,15 @@ import { useRef, useEffect } from "react";
  * @param {Array.<string>} props.data.borders
  * @param {number} props.data.population
  */
-export default function CountryCard({ data, observer }) {
-	const flagRef = useRef(null);
-
-	useEffect(() => {
-		let ref;
-
-		if (flagRef.current) {
-			ref = flagRef.current;
-			observer.observe(ref);
-		}
-
-		return () => {
-			if (ref) {
-				observer.unobserve(ref);
-			}
-		};
-	}, [observer]);
-
+export default function CountryCard({ data }) {
 	return (
 		<article className="card">
-			<div className="card-flag" ref={flagRef}>
-				<img
-					className="card-flag-image"
-					data-src={data.flags.png}
+			<div className="card-flag">
+				<LazyLoadImage
+					src={data.flags.png}
 					alt={`National flag of ${data.name.common}`}
-					type="image/png"
+					threshold={0}
+					className="card-flag-img"
 				/>
 			</div>
 			<div className="card-info">
