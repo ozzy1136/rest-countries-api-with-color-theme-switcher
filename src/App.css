@@ -19,6 +19,11 @@
 	font-display: swap;
 }
 
+/*
+* 	Tablet size: min-width: 768px
+* 	Laptop size: min-width: 1024px
+*/
+
 /* Base Rules */
 
 :root {
@@ -65,6 +70,13 @@
 	--page-gap-size: 5vw;
 	row-gap: 6vh;
 	margin-block-end: 6vh;
+	align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+	.l-filters {
+		--content-columns: 40% 1fr auto;
+	}
 }
 
 .l-cards {
@@ -93,7 +105,7 @@
 	}
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1024px) {
 	.l-cards-list-row {
 		grid-template-columns: repeat(4, 1fr);
 	}
@@ -120,6 +132,12 @@
 	font-size: 1rem;
 }
 
+@media screen and (min-width: 1024px) {
+	.app-header-heading-text {
+		font-size: 1.5rem;
+	}
+}
+
 .app-header-themeToggle {
 	grid-column: span 1 / wrapper-end;
 	justify-self: flex-end;
@@ -139,6 +157,12 @@
 .filters-name {
 	position: relative;
 	grid-column: wrapper;
+}
+
+@media screen and (min-width: 768px) {
+	.filters-name {
+		grid-column-end: span 1;
+	}
 }
 
 .filters-name-input {
@@ -167,6 +191,12 @@
 
 .filters-region {
 	grid-column: wrapper;
+}
+
+@media screen and (min-width: 768px) {
+	.filters-region {
+		grid-column: span 1 / wrapper-end;
+	}
 }
 
 .filters-region-select {

@@ -12,7 +12,7 @@ import CountryCard from "../CountryCard";
  */
 export default function CountriesList({ isLoadingCountries, countries }) {
 	const isTablet = useMatchMedia("(min-width: 768px)");
-	const isLaptop = useMatchMedia("(min-width: 1440px)");
+	const isLaptop = useMatchMedia("(min-width: 1024px)");
 	const chunkedCountries = useMemo(
 		() => chunk(countries, isLaptop ? 4 : isTablet ? 3 : 1),
 		[countries, isLaptop, isTablet]
