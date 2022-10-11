@@ -18,7 +18,7 @@ export default function AppHeader({ darkMode, setDarkMode }) {
 					className="sr-only"
 					id="theme-toggle"
 					type="checkbox"
-					checked={darkMode ? true : undefined}
+					checked={darkMode ? true : false}
 					onChange={() => setDarkMode(!darkMode)}
 				/>
 
