@@ -207,11 +207,6 @@
 	min-width: 10rem;
 }
 
-.card::before {
-	content: "\200B";
-	position: absolute;
-}
-
 .card {
 	--card-p-inline: 1.5rem;
 
@@ -223,30 +218,45 @@
 	display: flex;
 	flex-direction: column;
 	padding-block-end: 3rem;
+	cursor: pointer;
 }
 
 @media (hover: hover) {
 	.card:hover {
-		box-shadow: 0 0 0 3px rgba(38, 50, 190, 0.8);
+		box-shadow: 0 0 0 2px var(--c-text);
 	}
 }
 
 .card-heading {
+	margin-block: 1.5rem;
+	margin-inline: var(--card-p-inline);
+	position: relative;
+}
+
+.card-heading:focus-within {
+	outline: auto;
+}
+
+.card-heading-title {
 	font-family: var(--ff-extrabold);
 	font-size: 1.5rem;
-	margin-block: 1.5rem;
-	padding-inline: var(--card-p-inline);
+}
+
+@media (hover: hover) {
+	.card:hover .card-heading-title {
+		text-decoration: underline;
+	}
 }
 
 .card-heading-button {
-	appearance: none;
-	background: unset;
-	border: unset;
-	color: unset;
-	font-size: unset;
-	font-family: unset;
-	text-align: unset;
-	user-select: text;
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	cursor: pointer;
 }
 
 .card-flag {

@@ -22,24 +22,22 @@ export default function CountriesList({
 		<div className="l-cards page-section-container">
 			<div className="l-cards-status center-children" aria-live="polite">
 				{isLoadingCountries ? (
-					<p>Loading list of countries</p>
+					<h2>Loading list of countries</h2>
 				) : chunkedCountries.length === 0 ? (
-					// TODO Make details always available to screen readers
-					<p>
+					<h2>
 						Zero countries to show
 						<br />
 						Try adjusting the filters above
-					</p>
+					</h2>
 				) : (
-					<p className="sr-only">List of countries has loaded</p>
+					<h2 className="sr-only">List of countries is available</h2>
 				)}
 			</div>
-			<ul
+			<div
 				className={filterClassNames([
 					"l-cards-list",
 					isLoadingCountries ? "is-loading" : undefined,
 				])}
-				aria-label="List of countries"
 			>
 				<ViewportList items={chunkedCountries}>
 					{(row, index) => (
@@ -47,7 +45,6 @@ export default function CountriesList({
 							className="l-cards-list-row"
 							style={{ marginBottom: "4rem" }}
 							key={index}
-							role="presentation"
 						>
 							{row.map((curr) => (
 								<CountryCard
@@ -60,7 +57,7 @@ export default function CountriesList({
 						</div>
 					)}
 				</ViewportList>
-			</ul>
+			</div>
 		</div>
 	);
 }

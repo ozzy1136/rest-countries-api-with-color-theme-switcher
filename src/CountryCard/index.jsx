@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 /**
@@ -18,9 +19,63 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
  * @param {Array.<string>} props.data.borders
  * @param {number} props.data.population
  */
-export default function CountryCard({ data }) {
+export default function CountryCard({
+	data,
+	detailsDialog,
+	setSelectedCountry,
+}) {
+	const container = useRef();
+	const button = useRef();
+	let down, up;
+
+	function handleMousedown(e) {
+		if (button.current !== e.target) {
+			down = +new Date();
+		}
+	}
+
+	function handleMouseup(e) {
+		if (button.current !== e.target) {
+			up = +new Date();
+
+			if (up - down < 250) {
+				button.current.focus();
+				button.current.click();
+			}
+		}
+	}
+
+	useEffect(() => {
+		let curr = container.current;
+		if (curr) {
+			curr.addEventListener("mousedown", handleMousedown);
+			curr.addEventListener("mouseup", handleMouseup);
+		}
+
+		return () => {
+			if (curr) {
+				curr.removeEventListener("mousedown", handleMousedown);
+				curr.removeEventListener("mouseup", handleMouseup);
+			}
+		};
+	});
+
 	return (
-		<article className="card">
+		<article className="card" ref={container}>
+			<div className="card-heading">
+				<h3 className="card-heading-title">{data.name.common}</h3>
+				<button
+					className="card-heading-button"
+					type="button"
+					ref={button}
+					onClick={() => {
+						setSelectedCountry(data);
+						detailsDialog.current.show();
+					}}
+				>
+					Open {data.name.common} details dialog
+				</button>
+			</div>
 			<div className="card-flag">
 				<LazyLoadImage
 					src={data.flags.png}
@@ -30,7 +85,6 @@ export default function CountryCard({ data }) {
 				/>
 			</div>
 			<div className="card-info">
-				<h2 className="card-info-name">{data.name.common}</h2>
 				<p className="card-info-population card-info-text">
 					<span className="card-info-category">Population:</span>{" "}
 					{data.population.toLocaleString()}
