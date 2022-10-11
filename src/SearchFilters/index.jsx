@@ -22,20 +22,19 @@ export default function SearchFilters({ setNameQuery, setRegionQuery }) {
 	return (
 		<div className="l-filters page-section-container">
 			<div className="filters-name">
+				<SearchIcon className="filters-name-icon" />
 				<input
 					className="filters-name-input"
 					type="search"
-					name="search-name"
 					placeholder="Search for a country..."
 					value={searchValue}
 					onChange={(e) => setSearchValue(e.target.value)}
 				/>
-				<SearchIcon className="filters-name-icon" />
 			</div>
 			<div className="filters-region">
 				<select
 					className="filters-region-select"
-					name="regions"
+					aria-label="Filter countries by region"
 					value={regionValue}
 					onChange={(e) => setRegionValue(e.target.value)}
 				>

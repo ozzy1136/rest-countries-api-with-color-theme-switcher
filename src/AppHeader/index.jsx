@@ -8,23 +8,36 @@ export default function AppHeader({ darkMode, setDarkMode }) {
 				<h1 className="app-header-heading-text">Where in the world?</h1>
 			</div>
 			<div className="app-header-themeToggle">
-				<button
-					className="app-header-themeToggle-button"
-					type="button"
-					onClick={() => setDarkMode(!darkMode)}
+				<label
+					className="app-header-themeToggle-label"
+					htmlFor="theme-toggle"
+				>
+					Dark mode theme toggle
+				</label>
+				<input
+					className="sr-only"
+					id="theme-toggle"
+					type="checkbox"
+					checked={darkMode ? true : undefined}
+					onChange={() => setDarkMode(!darkMode)}
+				/>
+
+				<div
+					className="app-header-themeToggle-currValue center-children"
+					aria-hidden="true"
 				>
 					{darkMode ? (
-						<span>
+						<>
 							<SunIcon />
-							&ensp;Light Mode
-						</span>
+							<span>&ensp;Light Mode</span>
+						</>
 					) : (
-						<span>
+						<>
 							<MoonIcon />
-							&ensp;Dark Mode
-						</span>
+							<span>&ensp;Dark Mode</span>
+						</>
 					)}
-				</button>
+				</div>
 			</div>
 		</header>
 	);
