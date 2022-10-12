@@ -64,6 +64,9 @@
 	padding-block: 4vh;
 	margin-block-end: 4vh;
 	box-shadow: var(--bxsh);
+	position: sticky;
+	top: 0px;
+	z-index: 2;
 }
 
 .l-filters {
