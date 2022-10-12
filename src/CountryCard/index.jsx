@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+// TODO uncomment import for production
+// import { LazyLoadImage } from "react-lazy-load-image-component";
 
 /**
  * @param {Object} props
@@ -19,11 +20,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
  * @param {Array.<string>} props.data.borders
  * @param {number} props.data.population
  */
-export default function CountryCard({
-	data,
-	detailsDialog,
-	setSelectedCountry,
-}) {
+export default function CountryCard({ data, setSelectedCountry }) {
 	const container = useRef();
 	const button = useRef();
 	let down, up;
@@ -70,18 +67,23 @@ export default function CountryCard({
 					ref={button}
 					onClick={() => {
 						setSelectedCountry(data);
-						detailsDialog.current.show();
+						// TODO add code to display <CountryDetails/>
 					}}
 				>
-					Open {data.name.common} details dialog
+					Open {data.name.common} details overlay
 				</button>
 			</div>
 			<div className="card-flag">
-				<LazyLoadImage
+				{/* TODO uncomment <LazyLoadImage> for production */}
+				{/* <LazyLoadImage
 					src={data.flags.png}
 					alt={`National flag of ${data.name.common}`}
 					threshold={0}
 					className="card-flag-img"
+				/> */}
+				<img
+					className="card-flag-img"
+					alt={`National flag of ${data.name.common}`}
 				/>
 			</div>
 			<div className="card-info">

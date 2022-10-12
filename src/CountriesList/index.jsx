@@ -8,7 +8,6 @@ import CountryCard from "../CountryCard";
 export default function CountriesList({
 	isLoadingCountries,
 	countries,
-	detailsDialog,
 	setSelectedCountry,
 }) {
 	const isTablet = useViewportSize("(min-width: 768px)");
@@ -49,7 +48,6 @@ export default function CountriesList({
 							{row.map((curr) => (
 								<CountryCard
 									data={curr}
-									detailsDialog={detailsDialog}
 									setSelectedCountry={setSelectedCountry}
 									key={curr.name.common}
 								/>
