@@ -33,10 +33,10 @@ export default function CountriesList({
 				)}
 			</div>
 			<div
-				className={filterClassNames([
+				className={filterClassNames(
 					"l-cards-list",
-					isLoadingCountries ? "is-loading" : undefined,
-				])}
+					isLoadingCountries ? "is-loading" : undefined
+				)}
 			>
 				<ViewportList items={chunkedCountries}>
 					{(row, index) => (
