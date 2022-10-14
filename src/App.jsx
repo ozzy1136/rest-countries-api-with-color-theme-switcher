@@ -1,9 +1,10 @@
 import "./App.css";
 
-import { useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 
 import { filterClassNames } from "./helpers";
 import useCountryArrayFilters from "./useCountryArrayFilters";
+import countryDetailsReducer from "./countryDetailsReducer";
 import AppHeader from "./AppHeader";
 import SearchFilters from "./SearchFilters";
 import CountriesList from "./CountriesList";
@@ -27,38 +28,44 @@ export default function App() {
 	// ];
 
 	const [darkMode, setDarkMode] = useState(true);
+	// TODO refactor useCountryArrayFilters so that it uses useReducer
 	const [isLoadingCountries, countries, setNameQuery, setRegionQuery] =
 		useCountryArrayFilters(countriesJson);
-	const [selectedCountry, setSelectedCountry] = useState();
+	const [countryDetails, dispatchCountryDetails] = useReducer(
+		countryDetailsReducer,
+		{ data: {}, isVisible: false, lastToggledButton: undefined }
+	);
 
-	function addBodyNoScroll() {
-		document.body.classList.toggle("no-scroll", true);
-	}
-
-	function removeBodyNoScroll() {
-		document.body.classList.toggle("no-scroll", false);
-	}
+	useEffect(() => {
+		if (!countryDetails.isVisible && countryDetails.lastToggledButton) {
+			countryDetails.lastToggledButton.focus();
+		}
+	}, [countryDetails]);
 
 	return (
 		<div
-			className={filterClassNames([
-				"l-app",
-				darkMode ? "dark" : undefined,
-			])}
+			className={filterClassNames("l-app", darkMode ? "dark" : undefined)}
 		>
 			<AppHeader darkMode={darkMode} setDarkMode={setDarkMode} />
+			{/* TODO fix forced reflow while executing JavaScript */}
 			<main>
-				<SearchFilters
-					setNameQuery={setNameQuery}
-					setRegionQuery={setRegionQuery}
-				/>
-				<CountriesList
-					isLoadingCountries={isLoadingCountries}
-					countries={countries}
-					setSelectedCountry={setSelectedCountry}
-				/>
-				{/* TODO replace or cover <CountriesList> with <CountryDetails> when a card is clicked on */}
-				<CountryDetails data={selectedCountry} />
+				<section hidden={countryDetails.isVisible ? true : undefined}>
+					<SearchFilters
+						setNameQuery={setNameQuery}
+						setRegionQuery={setRegionQuery}
+					/>
+					<CountriesList
+						countries={countries}
+						isLoadingCountries={isLoadingCountries}
+						handleCardClick={dispatchCountryDetails}
+					/>
+				</section>
+				{countryDetails.isVisible ? (
+					<CountryDetails
+						data={countryDetails.data}
+						handleClosed={dispatchCountryDetails}
+					/>
+				) : null}
 			</main>
 		</div>
 	);

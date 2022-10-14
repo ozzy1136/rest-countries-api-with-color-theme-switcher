@@ -6,9 +6,9 @@ import useViewportSize from "../useViewportSize";
 import CountryCard from "../CountryCard";
 
 export default function CountriesList({
-	isLoadingCountries,
 	countries,
-	setSelectedCountry,
+	isLoadingCountries,
+	handleCardClick,
 }) {
 	const isTablet = useViewportSize("(min-width: 768px)");
 	const isDesktop = useViewportSize("(min-width: 1024px)");
@@ -48,7 +48,7 @@ export default function CountriesList({
 							{row.map((curr) => (
 								<CountryCard
 									data={curr}
-									setSelectedCountry={setSelectedCountry}
+									handleCardClick={handleCardClick}
 									key={curr.name.common}
 								/>
 							))}

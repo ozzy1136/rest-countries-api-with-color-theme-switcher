@@ -20,7 +20,7 @@ import { useRef, useEffect } from "react";
  * @param {Array.<string>} props.data.borders
  * @param {number} props.data.population
  */
-export default function CountryCard({ data, setSelectedCountry }) {
+export default function CountryCard({ data, handleCardClick }) {
 	const container = useRef();
 	const button = useRef();
 	let down, up;
@@ -65,9 +65,12 @@ export default function CountryCard({ data, setSelectedCountry }) {
 					className="card-heading-button"
 					type="button"
 					ref={button}
-					onClick={() => {
-						setSelectedCountry(data);
-						// TODO add code to display <CountryDetails/>
+					onClick={(e) => {
+						handleCardClick({
+							type: "country_details_opened",
+							payload: data,
+							buttonEl: e.target,
+						});
 					}}
 				>
 					Open {data.name.common} details overlay
