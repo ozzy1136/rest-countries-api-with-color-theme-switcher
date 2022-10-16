@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { ViewportList } from "react-viewport-list";
 
 import { chunk, filterClassNames } from "../helpers";
@@ -8,14 +8,29 @@ import CountryCard from "../CountryCard";
 export default function CountriesList({
 	countries,
 	isLoadingCountries,
+	countryDetails,
 	handleCardClick,
 }) {
+	const listRef = useRef();
 	const isTablet = useViewportSize("(min-width: 768px)");
 	const isDesktop = useViewportSize("(min-width: 1024px)");
 	const chunkedCountries = useMemo(
 		() => chunk(countries, isDesktop ? 4 : isTablet ? 3 : 1),
 		[countries, isDesktop, isTablet]
 	);
+
+	useEffect(() => {
+		if (!!countryDetails.lastToggledButton && !countryDetails.isVisible) {
+			listRef.current.scrollToIndex(countryDetails.buttonRowIndex);
+			requestAnimationFrame(() => {
+				countryDetails.lastToggledButton.focus();
+			});
+		}
+	}, [
+		countryDetails.lastToggledButton,
+		countryDetails.isVisible,
+		countryDetails.buttonRowIndex,
+	]);
 
 	return (
 		<div className="l-cards page-section-container">
@@ -38,17 +53,18 @@ export default function CountriesList({
 					isLoadingCountries ? "is-loading" : undefined
 				)}
 			>
-				<ViewportList items={chunkedCountries}>
-					{(row, index) => (
+				<ViewportList items={chunkedCountries} ref={listRef}>
+					{(row, rowIndex) => (
 						<div
 							className="l-cards-list-row"
 							style={{ marginBottom: "4rem" }}
-							key={index}
+							key={rowIndex}
 						>
 							{row.map((curr) => (
 								<CountryCard
 									data={curr}
 									handleCardClick={handleCardClick}
+									rowIndex={rowIndex}
 									key={curr.name.common}
 								/>
 							))}

@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { useEffect, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 
 import { filterClassNames } from "./helpers";
 import useCountryArrayFilters from "./useCountryArrayFilters";
@@ -26,28 +26,20 @@ export default function App() {
 	// 	"population",
 	// 	"flags",
 	// ];
-
 	const [darkMode, setDarkMode] = useState(true);
 	// TODO refactor useCountryArrayFilters so that it uses useReducer
 	const [isLoadingCountries, countries, setNameQuery, setRegionQuery] =
 		useCountryArrayFilters(countriesJson);
 	const [countryDetails, dispatchCountryDetails] = useReducer(
 		countryDetailsReducer,
-		{ data: {}, isVisible: false, lastToggledButton: undefined }
+		{ isVisible: false, data: {}, lastToggledButton: null }
 	);
-
-	useEffect(() => {
-		if (!countryDetails.isVisible && countryDetails.lastToggledButton) {
-			countryDetails.lastToggledButton.focus();
-		}
-	}, [countryDetails]);
 
 	return (
 		<div
 			className={filterClassNames("l-app", darkMode ? "dark" : undefined)}
 		>
 			<AppHeader darkMode={darkMode} setDarkMode={setDarkMode} />
-			{/* TODO fix forced reflow while executing JavaScript */}
 			<main>
 				<section hidden={countryDetails.isVisible ? true : undefined}>
 					<SearchFilters
@@ -57,6 +49,7 @@ export default function App() {
 					<CountriesList
 						countries={countries}
 						isLoadingCountries={isLoadingCountries}
+						countryDetails={countryDetails}
 						handleCardClick={dispatchCountryDetails}
 					/>
 				</section>

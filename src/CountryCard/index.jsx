@@ -20,7 +20,7 @@ import { useRef, useEffect } from "react";
  * @param {Array.<string>} props.data.borders
  * @param {number} props.data.population
  */
-export default function CountryCard({ data, handleCardClick }) {
+export default function CountryCard({ data, handleCardClick, rowIndex }) {
 	const container = useRef();
 	const button = useRef();
 	let down, up;
@@ -70,6 +70,7 @@ export default function CountryCard({ data, handleCardClick }) {
 							type: "country_details_opened",
 							payload: data,
 							buttonEl: e.target,
+							rowIndex: rowIndex,
 						});
 					}}
 				>

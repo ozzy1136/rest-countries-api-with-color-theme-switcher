@@ -291,10 +291,6 @@
 
 /* State Rules */
 
-.is-hidden {
-	opacity: 0;
-}
-
 .is-loading {
 	opacity: 0;
 }
