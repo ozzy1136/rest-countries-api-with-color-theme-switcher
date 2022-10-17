@@ -21,9 +21,26 @@ import { useRef, useEffect } from "react";
  * @param {number} props.data.population
  */
 export default function CountryCard({ data, handleCardClick, rowIndex }) {
+	// TODO update row index for lastToggledButton when window is resized and countries are chunked
 	const container = useRef(null);
 	const button = useRef(null);
+
 	let down, up;
+
+	useEffect(() => {
+		let curr = container.current;
+		if (curr) {
+			curr.addEventListener("mousedown", handleMousedown);
+			curr.addEventListener("mouseup", handleMouseup);
+		}
+
+		return () => {
+			if (curr) {
+				curr.removeEventListener("mousedown", handleMousedown);
+				curr.removeEventListener("mouseup", handleMouseup);
+			}
+		};
+	});
 
 	function handleMousedown(e) {
 		if (button.current !== e.target) {
@@ -42,21 +59,6 @@ export default function CountryCard({ data, handleCardClick, rowIndex }) {
 		}
 	}
 
-	useEffect(() => {
-		let curr = container.current;
-		if (curr) {
-			curr.addEventListener("mousedown", handleMousedown);
-			curr.addEventListener("mouseup", handleMouseup);
-		}
-
-		return () => {
-			if (curr) {
-				curr.removeEventListener("mousedown", handleMousedown);
-				curr.removeEventListener("mouseup", handleMouseup);
-			}
-		};
-	});
-
 	return (
 		<article className="card" ref={container}>
 			<div className="card-heading">
@@ -65,11 +67,11 @@ export default function CountryCard({ data, handleCardClick, rowIndex }) {
 					className="card-heading-button"
 					type="button"
 					ref={button}
-					onClick={(e) => {
+					onClick={() => {
 						handleCardClick({
 							type: "country_details_opened",
 							payload: data,
-							buttonEl: e.target,
+							buttonEl: button.current,
 							rowIndex: rowIndex,
 						});
 					}}

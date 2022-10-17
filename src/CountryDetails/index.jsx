@@ -55,7 +55,6 @@ export default function CountryDetails({ data, handleClosed }) {
 
 	return (
 		<section className="l-details page-section-container" ref={container}>
-			{/* TODO add styles for back button */}
 			<div className="details-backButton">
 				<button
 					className="details-backButton-el"
