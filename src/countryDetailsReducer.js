@@ -13,7 +13,7 @@ export default function countryDetailsReducer(state, action) {
 			return {
 				...state,
 				isVisible: false,
-				data: {},
+				data: null,
 			};
 		}
 		default:

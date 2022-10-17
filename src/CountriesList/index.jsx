@@ -11,7 +11,7 @@ export default function CountriesList({
 	countryDetails,
 	handleCardClick,
 }) {
-	const listRef = useRef();
+	const listRef = useRef(null);
 	const isTablet = useViewportSize("(min-width: 768px)");
 	const isDesktop = useViewportSize("(min-width: 1024px)");
 	const chunkedCountries = useMemo(

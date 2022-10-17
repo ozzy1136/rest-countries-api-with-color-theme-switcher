@@ -14,6 +14,7 @@ import CountryDetails from "./CountryDetails";
 import countriesJson from "./data.json";
 
 export default function App() {
+	// https://restcountries.com/v3.1/all?fields=
 	// const apiFields = [
 	// 	"name",
 	// 	"tld",
@@ -32,7 +33,7 @@ export default function App() {
 		useCountryArrayFilters(countriesJson);
 	const [countryDetails, dispatchCountryDetails] = useReducer(
 		countryDetailsReducer,
-		{ isVisible: false, data: {}, lastToggledButton: null }
+		{ isVisible: false, data: null, lastToggledButton: null }
 	);
 
 	return (

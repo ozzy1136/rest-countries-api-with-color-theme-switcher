@@ -21,8 +21,8 @@ import { useRef, useEffect } from "react";
  * @param {number} props.data.population
  */
 export default function CountryCard({ data, handleCardClick, rowIndex }) {
-	const container = useRef();
-	const button = useRef();
+	const container = useRef(null);
+	const button = useRef(null);
 	let down, up;
 
 	function handleMousedown(e) {
