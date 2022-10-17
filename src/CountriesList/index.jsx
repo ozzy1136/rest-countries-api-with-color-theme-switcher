@@ -47,6 +47,7 @@ export default function CountriesList({
 					<h2 className="sr-only">List of countries is available</h2>
 				)}
 			</div>
+			{/* TODO add scroll to top of list button */}
 			<div
 				className={filterClassNames(
 					"l-cards-list",
