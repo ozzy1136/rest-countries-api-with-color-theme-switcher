@@ -118,7 +118,7 @@
 
 .l-details {
 	--page-gap-size: 8vw;
-	--details-row-gap: 7vh;
+	--details-row-gap: 6vh;
 
 	padding-block-end: 8vh;
 	row-gap: var(--details-row-gap);
@@ -300,6 +300,26 @@
 .details,
 .details-backButton {
 	grid-column: wrapper;
+}
+
+.details-backButton-el {
+	border: unset;
+	background-color: var(--bgc-elements);
+	color: var(--c-text);
+	box-shadow: var(--bxsh);
+	padding-block: 0.5rem;
+	padding-inline: 1.5rem;
+	border-radius: 3px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 0.5em;
+	font-family: var(--ff-light);
+}
+
+.details-backButton-el-icon {
+	width: 1.5rem;
+	height: 1.5rem;
 }
 
 .details {

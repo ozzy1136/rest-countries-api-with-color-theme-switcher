@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 
 import { focusFirstDescendant } from "../helpers";
 import useFetch from "src/useFetch";
+import { ReactComponent as BackButtonIcon } from "./left-arrow.svg";
 
 /**
  * @param {Object} props
@@ -57,11 +58,13 @@ export default function CountryDetails({ data, handleClosed }) {
 			{/* TODO add styles for back button */}
 			<div className="details-backButton">
 				<button
+					className="details-backButton-el"
 					type="button"
 					onClick={() => {
 						handleClosed({ type: "country_details_closed" });
 					}}
 				>
+					<BackButtonIcon className="details-backButton-el-icon" />{" "}
 					Back
 				</button>
 			</div>
