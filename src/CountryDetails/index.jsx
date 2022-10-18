@@ -77,10 +77,6 @@ export default function CountryDetails({ data, handleClosed }) {
 						threshold={0}
 						className="card-flag-img"
 					/>
-					<img
-						className="details-flag-img"
-						alt={`National flag of ${data.name.common}`}
-					/>
 				</div>
 				<div className="details-info details-child">
 					<div className="details-info-primary">

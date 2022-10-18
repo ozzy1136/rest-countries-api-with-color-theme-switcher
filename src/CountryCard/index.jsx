@@ -101,10 +101,6 @@ export default function CountryCard({
 					threshold={0}
 					className="card-flag-img"
 				/>
-				<img
-					className="card-flag-img"
-					alt={`National flag of ${data.name.common}`}
-				/>
 			</div>
 			<div className="card-info">
 				<p className="card-info-population card-info-text">
