@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 // import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { focusFirstDescendant } from "../helpers";
-import useFetch from "src/useFetch";
+import useFetch from "../hooks/useFetch";
 import { ReactComponent as BackButtonIcon } from "./left-arrow.svg";
 
 /**

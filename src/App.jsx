@@ -1,10 +1,10 @@
 import "./App.css";
 
-import { useReducer, useState } from "react";
+import { useState } from "react";
 
 import { filterClassNames } from "./helpers";
-import useCountryArrayFilters from "./useCountryArrayFilters";
-import countryDetailsReducer from "./countryDetailsReducer";
+import useCountryArrayFilters from "./hooks/useCountryFilters";
+import useDetailsDialogStatus from "./hooks/useDetailsDialogStatus";
 import AppHeader from "./AppHeader";
 import SearchFilters from "./SearchFilters";
 import CountriesList from "./CountriesList";
@@ -31,10 +31,7 @@ export default function App() {
 	// TODO refactor useCountryArrayFilters so that it uses useReducer
 	const [isLoadingCountries, countries, setNameQuery, setRegionQuery] =
 		useCountryArrayFilters(countriesJson);
-	const [countryDetails, dispatchCountryDetails] = useReducer(
-		countryDetailsReducer,
-		{ isVisible: false, data: null, lastToggledButton: null }
-	);
+	const [countryDetails, dispatchCountryDetails] = useDetailsDialogStatus();
 
 	return (
 		<div

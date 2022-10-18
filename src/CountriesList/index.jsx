@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { ViewportList } from "react-viewport-list";
 
 import { chunk, filterClassNames } from "../helpers";
-import useViewportSize from "../useViewportSize";
+import useViewportSize from "../hooks/useViewportSize";
 import CountryCard from "../CountryCard";
 
 export default function CountriesList({
