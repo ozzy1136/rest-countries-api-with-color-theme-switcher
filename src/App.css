@@ -124,6 +124,12 @@
 	row-gap: var(--details-row-gap);
 }
 
+@media screen and (min-width: 768px) {
+	.l-details {
+		--page-gap-size: 5vw;
+	}
+}
+
 /* Module Rules */
 
 .app-header-heading {
@@ -165,12 +171,6 @@
 	grid-column: wrapper;
 }
 
-@media screen and (min-width: 768px) {
-	.filters-name {
-		grid-column-end: span 1;
-	}
-}
-
 .filters-name-input {
 	border: unset;
 	border-radius: 5px;
@@ -199,12 +199,6 @@
 	grid-column: wrapper;
 }
 
-@media screen and (min-width: 768px) {
-	.filters-region {
-		grid-column: span 1 / wrapper-end;
-	}
-}
-
 .filters-region-select {
 	border: unset;
 	box-shadow: var(--bxsh);
@@ -214,6 +208,16 @@
 	color: inherit;
 	background-color: var(--bgc-elements);
 	min-width: 10rem;
+}
+
+@media screen and (min-width: 768px) {
+	.filters-name {
+		grid-column-end: span 1;
+	}
+
+	.filters-region {
+		grid-column: span 1 / wrapper-end;
+	}
 }
 
 .card {
@@ -354,6 +358,11 @@
 	row-gap: var(--details-row-gap);
 }
 
+.details-info-primary,
+.details-info-secondary {
+	width: max-content;
+}
+
 .details-info-content:not(:last-child) {
 	margin-block-end: 0.8rem;
 }
@@ -368,9 +377,14 @@
 	font-family: var(--ff-light);
 }
 
+.details-borders {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1.5rem;
+}
+
 .details-borders-category {
 	font-size: 1.2rem;
-	margin-block-end: 1.5rem;
 }
 
 .details-borders-list {
@@ -381,12 +395,46 @@
 	column-gap: 0.8rem;
 }
 
-.details-borders-value {
+.details-borders-list-item {
 	width: 100%;
 	text-align: center;
 	background-color: var(--bgc-elements);
 	padding-block: 0.5rem;
 	box-shadow: var(--bxsh);
+}
+
+@media screen and (min-width: 768px) {
+	.details {
+		grid-template-columns: 1fr 1fr;
+		column-gap: 6vw;
+	}
+
+	.details-heading {
+		margin-block-start: 1rem;
+	}
+
+	.details-flag {
+		grid-column: 1 / span 1;
+		grid-row: 1 / span 4;
+	}
+}
+
+@media screen and (min-width: 1250px) {
+	.details-info {
+		flex-direction: row;
+		justify-content: space-around;
+		column-gap: 8vw;
+	}
+
+	.details-borders {
+		flex-direction: row;
+		align-items: baseline;
+	}
+
+	.details-borders-list {
+		width: 100%;
+		grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
+	}
 }
 
 .list-commas {

@@ -192,7 +192,9 @@ export default function CountryDetails({ data, handleClosed }) {
 					{!data.borders.length ? (
 						<p className="details-borders-value">None</p>
 					) : fetchBordersError ? (
-						<p>There was an error getting the border countries</p>
+						<p className="details-borders-value">
+							There was an error getting the border countries
+						</p>
 					) : !borders ? (
 						<p className="details-borders-value">
 							Loading borders...
@@ -201,7 +203,7 @@ export default function CountryDetails({ data, handleClosed }) {
 						<ul className="details-borders-list">
 							{borders.map((curr, index) => (
 								<li
-									className="details-borders-value"
+									className="details-borders-value details-borders-list-item"
 									key={index}
 								>
 									{curr.name.common}
