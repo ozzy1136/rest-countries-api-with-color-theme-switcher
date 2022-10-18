@@ -5,7 +5,7 @@ export default function countryDetailsReducer(state, action) {
 				...state,
 				isVisible: true,
 				data: action.payload,
-				lastToggledButton: action.buttonEl,
+				lastToggledButton: action.buttonId,
 				buttonRowIndex: action.rowIndex,
 			};
 		}

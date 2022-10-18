@@ -20,15 +20,45 @@ import { useRef, useEffect } from "react";
  * @param {Array.<string>} props.data.borders
  * @param {number} props.data.population
  */
-export default function CountryCard({ data, handleCardClick, rowIndex }) {
+export default function CountryCard({
+	data,
+	handleCardClick,
+	rowIndex,
+	lastToggledButtonId,
+}) {
 	// TODO update row index for lastToggledButton when window is resized and countries are chunked
 	const container = useRef(null);
 	const button = useRef(null);
 
-	let down, up;
+	useEffect(() => {
+		if (button.current.id === lastToggledButtonId) {
+			requestAnimationFrame(() => {
+				button.current.focus();
+			});
+		}
+	}, [button, lastToggledButtonId]);
 
 	useEffect(() => {
 		let curr = container.current;
+		let down, up;
+
+		function handleMousedown(e) {
+			if (button.current !== e.target) {
+				down = +new Date();
+			}
+		}
+
+		function handleMouseup(e) {
+			if (button.current !== e.target) {
+				up = +new Date();
+
+				if (up - down < 250) {
+					button.current.focus();
+					button.current.click();
+				}
+			}
+		}
+
 		if (curr) {
 			curr.addEventListener("mousedown", handleMousedown);
 			curr.addEventListener("mouseup", handleMouseup);
@@ -40,24 +70,7 @@ export default function CountryCard({ data, handleCardClick, rowIndex }) {
 				curr.removeEventListener("mouseup", handleMouseup);
 			}
 		};
-	});
-
-	function handleMousedown(e) {
-		if (button.current !== e.target) {
-			down = +new Date();
-		}
-	}
-
-	function handleMouseup(e) {
-		if (button.current !== e.target) {
-			up = +new Date();
-
-			if (up - down < 250) {
-				button.current.focus();
-				button.current.click();
-			}
-		}
-	}
+	}, []);
 
 	return (
 		<article className="card" ref={container}>
@@ -65,13 +78,16 @@ export default function CountryCard({ data, handleCardClick, rowIndex }) {
 				<h3 className="card-heading-title">{data.name.common}</h3>
 				<button
 					className="card-heading-button"
+					id={`card-button-${data.name.common
+						.toLowerCase()
+						.replaceAll(" ", "-")}`}
 					type="button"
 					ref={button}
 					onClick={() => {
 						handleCardClick({
 							type: "country_details_opened",
 							payload: data,
-							buttonEl: button.current,
+							buttonId: button.current.id,
 							rowIndex: rowIndex,
 						});
 					}}

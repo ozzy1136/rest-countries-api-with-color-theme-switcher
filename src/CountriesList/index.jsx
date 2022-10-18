@@ -22,15 +22,8 @@ export default function CountriesList({
 	useEffect(() => {
 		if (!!countryDetails.lastToggledButton && !countryDetails.isVisible) {
 			listRef.current.scrollToIndex(countryDetails.buttonRowIndex);
-			requestAnimationFrame(() => {
-				countryDetails.lastToggledButton.focus();
-			});
 		}
-	}, [
-		countryDetails.lastToggledButton,
-		countryDetails.isVisible,
-		countryDetails.buttonRowIndex,
-	]);
+	}, [countryDetails]);
 
 	return (
 		<div className="l-cards page-section-container">
@@ -47,31 +40,35 @@ export default function CountriesList({
 					<h2 className="sr-only">List of countries is available</h2>
 				)}
 			</div>
-			{/* TODO add scroll to top of list button */}
 			<div
 				className={filterClassNames(
 					"l-cards-list",
 					isLoadingCountries ? "is-loading" : undefined
 				)}
 			>
-				<ViewportList items={chunkedCountries} ref={listRef}>
-					{(row, rowIndex) => (
-						<div
-							className="l-cards-list-row"
-							style={{ marginBottom: "4rem" }}
-							key={rowIndex}
-						>
-							{row.map((curr) => (
-								<CountryCard
-									data={curr}
-									handleCardClick={handleCardClick}
-									rowIndex={rowIndex}
-									key={curr.name.common}
-								/>
-							))}
-						</div>
-					)}
-				</ViewportList>
+				{countryDetails.isVisible ? null : (
+					<ViewportList items={chunkedCountries} ref={listRef}>
+						{(row, rowIndex) => (
+							<div
+								className="l-cards-list-row"
+								style={{ marginBottom: "4rem" }}
+								key={rowIndex}
+							>
+								{row.map((curr) => (
+									<CountryCard
+										data={curr}
+										handleCardClick={handleCardClick}
+										rowIndex={rowIndex}
+										lastToggledButtonId={
+											countryDetails.lastToggledButton
+										}
+										key={curr.name.common}
+									/>
+								))}
+							</div>
+						)}
+					</ViewportList>
+				)}
 			</div>
 		</div>
 	);
