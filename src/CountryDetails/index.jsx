@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
-// TODO uncomment import for production
-// import { LazyLoadImage } from "react-lazy-load-image-component";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { focusFirstDescendant } from "../helpers";
 import useFetch from "../hooks/useFetch";
@@ -72,13 +71,12 @@ export default function CountryDetails({ data, handleClosed }) {
 					<h2 id="country-details-heading">{data.name.common}</h2>
 				</div>
 				<div className="details-flag details-child">
-					{/* TODO uncomment <LazyLoadImage> for production */}
-					{/* <LazyLoadImage
+					<LazyLoadImage
 						src={data.flags.png}
 						alt={`National flag of ${data.name.common}`}
 						threshold={0}
 						className="card-flag-img"
-					/> */}
+					/>
 					<img
 						className="details-flag-img"
 						alt={`National flag of ${data.name.common}`}

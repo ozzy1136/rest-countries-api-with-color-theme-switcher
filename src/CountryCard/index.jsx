@@ -1,6 +1,5 @@
 import { useRef, useEffect } from "react";
-// TODO uncomment import for production
-// import { LazyLoadImage } from "react-lazy-load-image-component";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 /**
  * @param {Object} props
@@ -96,13 +95,12 @@ export default function CountryCard({
 				</button>
 			</div>
 			<div className="card-flag">
-				{/* TODO uncomment <LazyLoadImage> for production */}
-				{/* <LazyLoadImage
+				<LazyLoadImage
 					src={data.flags.png}
 					alt={`National flag of ${data.name.common}`}
 					threshold={0}
 					className="card-flag-img"
-				/> */}
+				/>
 				<img
 					className="card-flag-img"
 					alt={`National flag of ${data.name.common}`}
