@@ -7,17 +7,17 @@ import CountryCard from "../CountryCard";
 
 export default function CountriesList({
 	countriesArr,
-	isLoadingCountries,
 	countryDetails,
 	handleCardClick,
 }) {
 	const listRef = useRef(null);
 	const isTablet = useViewportSize("(min-width: 768px)");
 	const isDesktop = useViewportSize("(min-width: 1024px)");
-	const chunkedCountries = useMemo(
-		() => chunk(countriesArr, isDesktop ? 4 : isTablet ? 3 : 1),
-		[countriesArr, isDesktop, isTablet]
-	);
+	// TODO add timeout so loading message is shown
+	const chunkedCountries = useMemo(() => {
+		if (countriesArr)
+			return chunk(countriesArr, isDesktop ? 4 : isTablet ? 3 : 1);
+	}, [countriesArr, isDesktop, isTablet]);
 
 	useEffect(() => {
 		if (!!countryDetails.lastToggledButton && !countryDetails.isVisible) {
@@ -28,7 +28,7 @@ export default function CountriesList({
 	return (
 		<div className="l-cards page-section-container">
 			<div className="l-cards-status center-children" aria-live="polite">
-				{isLoadingCountries ? (
+				{!countriesArr ? (
 					<h2>Loading list of countries</h2>
 				) : chunkedCountries.length === 0 ? (
 					<h2>
@@ -43,7 +43,7 @@ export default function CountriesList({
 			<div
 				className={filterClassNames(
 					"l-cards-list",
-					isLoadingCountries ? "is-loading" : undefined
+					!countriesArr ? "is-loading" : undefined
 				)}
 			>
 				{countryDetails.isVisible ? null : (

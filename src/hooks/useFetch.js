@@ -29,7 +29,7 @@ function fetchReducer(state, action) {
 	}
 }
 
-export default function useFetch(url) {
+export default function useFetch(url, saveToLocalStorage = false) {
 	const [state, dispatch] = useReducer(fetchReducer, initialState);
 
 	useEffect(() => {
@@ -39,6 +39,13 @@ export default function useFetch(url) {
 
 		(async () => {
 			dispatch({ type: "loading" });
+			if (localStorage.hasOwnProperty(url)) {
+				dispatch({
+					type: "fetched",
+					payload: JSON.parse(localStorage.getItem(url)),
+				});
+				return;
+			}
 			try {
 				const response = await fetch(url, {
 					signal: controller.signal,
@@ -47,6 +54,9 @@ export default function useFetch(url) {
 					throw new Error(response.statusText);
 				}
 				const data = await response.json();
+				if (saveToLocalStorage) {
+					localStorage.setItem(url, JSON.stringify(data));
+				}
 				dispatch({
 					type: "fetched",
 					payload: data,
@@ -62,7 +72,7 @@ export default function useFetch(url) {
 		return () => {
 			controller.abort();
 		};
-	}, [url]);
+	}, [url, saveToLocalStorage]);
 
 	return state;
 }

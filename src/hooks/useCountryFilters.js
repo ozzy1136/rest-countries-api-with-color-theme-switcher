@@ -19,16 +19,20 @@ function queryReducer(state, action) {
 	}
 }
 
-export default function useCountryFilters(completeListOfCountries) {
+export default function useCountryFilters(completeCountriesList) {
 	const initialState = {
 		regionQuery: null,
 		nameQuery: null,
 	};
 	const [state, dispatch] = useReducer(queryReducer, initialState);
-	const [countriesList, setCountriesList] = useState([]);
+	const [filteredList, setFilteredList] = useState(null);
 
 	useEffect(() => {
-		let res = [...completeListOfCountries];
+		if (!completeCountriesList) return;
+
+		setFilteredList(null);
+
+		let res = [...completeCountriesList];
 		if (!!state.regionQuery) {
 			res = res.filter((curr) =>
 				curr.region
@@ -43,8 +47,8 @@ export default function useCountryFilters(completeListOfCountries) {
 					.startsWith(state.nameQuery.toLowerCase())
 			);
 		}
-		setCountriesList(res);
-	}, [completeListOfCountries, state.regionQuery, state.nameQuery]);
+		setFilteredList(res);
+	}, [completeCountriesList, state.regionQuery, state.nameQuery]);
 
-	return [countriesList, dispatch];
+	return [filteredList, dispatch];
 }
