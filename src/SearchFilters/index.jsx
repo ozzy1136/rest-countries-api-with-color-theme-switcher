@@ -1,23 +1,29 @@
 import { ReactComponent as SearchIcon } from "./search.svg";
 import { useState, useEffect } from "react";
 
-export default function SearchFilters({ setNameQuery, setRegionQuery }) {
+export default function SearchFilters({ updateQuery }) {
 	const [searchValue, setSearchValue] = useState("");
 	const [regionValue, setRegionValue] = useState("");
 
 	useEffect(() => {
+		updateQuery({
+			type: "update_region_query",
+			payload: regionValue,
+		});
+	}, [updateQuery, regionValue]);
+
+	useEffect(() => {
 		const timeoutId = setTimeout(() => {
-			setNameQuery(searchValue);
+			updateQuery({
+				type: "update_name_query",
+				payload: searchValue,
+			});
 		}, 750);
 
 		return () => {
 			clearTimeout(timeoutId);
 		};
-	}, [setNameQuery, searchValue]);
-
-	useEffect(() => {
-		setRegionQuery(regionValue);
-	}, [setRegionQuery, regionValue]);
+	}, [updateQuery, searchValue]);
 
 	return (
 		<div className="l-filters page-section-container">

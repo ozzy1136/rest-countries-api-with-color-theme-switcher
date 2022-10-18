@@ -6,7 +6,7 @@ import useViewportSize from "../hooks/useViewportSize";
 import CountryCard from "../CountryCard";
 
 export default function CountriesList({
-	countries,
+	countriesArr,
 	isLoadingCountries,
 	countryDetails,
 	handleCardClick,
@@ -15,8 +15,8 @@ export default function CountriesList({
 	const isTablet = useViewportSize("(min-width: 768px)");
 	const isDesktop = useViewportSize("(min-width: 1024px)");
 	const chunkedCountries = useMemo(
-		() => chunk(countries, isDesktop ? 4 : isTablet ? 3 : 1),
-		[countries, isDesktop, isTablet]
+		() => chunk(countriesArr, isDesktop ? 4 : isTablet ? 3 : 1),
+		[countriesArr, isDesktop, isTablet]
 	);
 
 	useEffect(() => {

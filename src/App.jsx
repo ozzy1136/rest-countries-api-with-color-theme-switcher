@@ -3,7 +3,7 @@ import "./App.css";
 import { useState } from "react";
 
 import { filterClassNames } from "./helpers";
-import useCountryArrayFilters from "./hooks/useCountryFilters";
+import useCountryFilters from "./hooks/useCountryFilters";
 import useDetailsDialogStatus from "./hooks/useDetailsDialogStatus";
 import AppHeader from "./AppHeader";
 import SearchFilters from "./SearchFilters";
@@ -28,9 +28,7 @@ export default function App() {
 	// 	"flags",
 	// ];
 	const [darkMode, setDarkMode] = useState(true);
-	// TODO refactor useCountryArrayFilters so that it uses useReducer
-	const [isLoadingCountries, countries, setNameQuery, setRegionQuery] =
-		useCountryArrayFilters(countriesJson);
+	const [countriesArr, updateQuery] = useCountryFilters(countriesJson);
 	const [countryDetails, dispatchCountryDetails] = useDetailsDialogStatus();
 
 	return (
@@ -40,13 +38,9 @@ export default function App() {
 			<AppHeader darkMode={darkMode} setDarkMode={setDarkMode} />
 			<main>
 				<section hidden={countryDetails.isVisible ? true : undefined}>
-					<SearchFilters
-						setNameQuery={setNameQuery}
-						setRegionQuery={setRegionQuery}
-					/>
+					<SearchFilters updateQuery={updateQuery} />
 					<CountriesList
-						countries={countries}
-						isLoadingCountries={isLoadingCountries}
+						countriesArr={countriesArr}
 						countryDetails={countryDetails}
 						handleCardClick={dispatchCountryDetails}
 					/>

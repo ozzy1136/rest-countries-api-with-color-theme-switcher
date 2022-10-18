@@ -1,44 +1,50 @@
-import { useState, useEffect } from "react";
+import { useEffect, useReducer, useState } from "react";
 
-export default function useCountryArrayFilters(completeListOfCountries) {
-	const [isLoadingCountries, setIsLoadingCountries] = useState(false);
-	const [countries, setCountries] = useState([]);
-	const [nameQuery, setNameQuery] = useState("");
-	const [regionQuery, setRegionQuery] = useState("");
+function queryReducer(state, action) {
+	switch (action.type) {
+		case "update_region_query": {
+			return {
+				...state,
+				regionQuery: action.payload,
+			};
+		}
+		case "update_name_query": {
+			return {
+				...state,
+				nameQuery: action.payload,
+			};
+		}
+		default:
+			throw new Error("Unknown action: " + action.type);
+	}
+}
+
+export default function useCountryFilters(completeListOfCountries) {
+	const initialState = {
+		regionQuery: null,
+		nameQuery: null,
+	};
+	const [state, dispatch] = useReducer(queryReducer, initialState);
+	const [countriesList, setCountriesList] = useState([]);
 
 	useEffect(() => {
-		(async () => {
-			let res = [...completeListOfCountries];
-			setIsLoadingCountries(true);
+		let res = [...completeListOfCountries];
+		if (!!state.regionQuery) {
+			res = res.filter((curr) =>
+				curr.region
+					.toLowerCase()
+					.startsWith(state.regionQuery.toLowerCase())
+			);
+		}
+		if (!!state.nameQuery) {
+			res = res.filter((curr) =>
+				curr.name.common
+					.toLowerCase()
+					.startsWith(state.nameQuery.toLowerCase())
+			);
+		}
+		setCountriesList(res);
+	}, [completeListOfCountries, state.regionQuery, state.nameQuery]);
 
-			await new Promise((resolve) => {
-				if (regionQuery !== "") {
-					res = res.filter((curr) =>
-						curr.region
-							.toLowerCase()
-							.startsWith(regionQuery.toLowerCase())
-					);
-				}
-
-				if (nameQuery !== "") {
-					res = res.filter((curr) =>
-						// Country common name is the name that is displayed in card component
-						curr.name.common
-							.toLowerCase()
-							.startsWith(nameQuery.toLowerCase())
-					);
-				}
-
-				resolve();
-			});
-
-			setCountries(res);
-			await new Promise((resolve) => {
-				setTimeout(resolve, 500);
-			});
-			setIsLoadingCountries(false);
-		})();
-	}, [nameQuery, regionQuery, completeListOfCountries]);
-
-	return [isLoadingCountries, countries, setNameQuery, setRegionQuery];
+	return [countriesList, dispatch];
 }
