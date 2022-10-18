@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/rest-countries-api-with-color-theme-switcher/static/css/main.1c31470a.css",
-    "main.js": "/rest-countries-api-with-color-theme-switcher/static/js/main.0b9cacd3.js",
+    "main.js": "/rest-countries-api-with-color-theme-switcher/static/js/main.d47c6f67.js",
     "static/js/787.12db54da.chunk.js": "/rest-countries-api-with-color-theme-switcher/static/js/787.12db54da.chunk.js",
     "static/media/NunitoSans-Light.ttf": "/rest-countries-api-with-color-theme-switcher/static/media/NunitoSans-Light.8fde328cad4b7fd03bcd.ttf",
     "static/media/NunitoSans-ExtraBold.ttf": "/rest-countries-api-with-color-theme-switcher/static/media/NunitoSans-ExtraBold.7f6fb187a1b4fe5f9f42.ttf",
@@ -12,11 +12,11 @@
     "static/media/search.svg": "/rest-countries-api-with-color-theme-switcher/static/media/search.8e5be1a3817ac169c338f7e842ae7cd4.svg",
     "static/media/left-arrow.svg": "/rest-countries-api-with-color-theme-switcher/static/media/left-arrow.46afc134857c7976bbb661d7572cbb6a.svg",
     "main.1c31470a.css.map": "/rest-countries-api-with-color-theme-switcher/static/css/main.1c31470a.css.map",
-    "main.0b9cacd3.js.map": "/rest-countries-api-with-color-theme-switcher/static/js/main.0b9cacd3.js.map",
+    "main.d47c6f67.js.map": "/rest-countries-api-with-color-theme-switcher/static/js/main.d47c6f67.js.map",
     "787.12db54da.chunk.js.map": "/rest-countries-api-with-color-theme-switcher/static/js/787.12db54da.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1c31470a.css",
-    "static/js/main.0b9cacd3.js"
+    "static/js/main.d47c6f67.js"
   ]
 }
