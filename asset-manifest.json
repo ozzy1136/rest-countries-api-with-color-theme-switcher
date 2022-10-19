@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/rest-countries-api-with-color-theme-switcher/static/css/main.1c31470a.css",
-    "main.js": "/rest-countries-api-with-color-theme-switcher/static/js/main.d47c6f67.js",
+    "main.css": "/rest-countries-api-with-color-theme-switcher/static/css/main.69a05c41.css",
+    "main.js": "/rest-countries-api-with-color-theme-switcher/static/js/main.b4ba6b23.js",
     "static/js/787.12db54da.chunk.js": "/rest-countries-api-with-color-theme-switcher/static/js/787.12db54da.chunk.js",
     "static/media/NunitoSans-Light.ttf": "/rest-countries-api-with-color-theme-switcher/static/media/NunitoSans-Light.8fde328cad4b7fd03bcd.ttf",
     "static/media/NunitoSans-ExtraBold.ttf": "/rest-countries-api-with-color-theme-switcher/static/media/NunitoSans-ExtraBold.7f6fb187a1b4fe5f9f42.ttf",
@@ -11,12 +11,12 @@
     "static/media/icon-moon.svg": "/rest-countries-api-with-color-theme-switcher/static/media/icon-moon.64e73c9fab9f5197639b8019e6ccc4d8.svg",
     "static/media/search.svg": "/rest-countries-api-with-color-theme-switcher/static/media/search.8e5be1a3817ac169c338f7e842ae7cd4.svg",
     "static/media/left-arrow.svg": "/rest-countries-api-with-color-theme-switcher/static/media/left-arrow.46afc134857c7976bbb661d7572cbb6a.svg",
-    "main.1c31470a.css.map": "/rest-countries-api-with-color-theme-switcher/static/css/main.1c31470a.css.map",
-    "main.d47c6f67.js.map": "/rest-countries-api-with-color-theme-switcher/static/js/main.d47c6f67.js.map",
+    "main.69a05c41.css.map": "/rest-countries-api-with-color-theme-switcher/static/css/main.69a05c41.css.map",
+    "main.b4ba6b23.js.map": "/rest-countries-api-with-color-theme-switcher/static/js/main.b4ba6b23.js.map",
     "787.12db54da.chunk.js.map": "/rest-countries-api-with-color-theme-switcher/static/js/787.12db54da.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1c31470a.css",
-    "static/js/main.d47c6f67.js"
+    "static/css/main.69a05c41.css",
+    "static/js/main.b4ba6b23.js"
   ]
 }
