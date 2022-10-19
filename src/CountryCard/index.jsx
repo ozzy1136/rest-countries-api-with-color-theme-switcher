@@ -19,23 +19,10 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
  * @param {Array.<string>} props.data.borders
  * @param {number} props.data.population
  */
-export default function CountryCard({
-	data,
-	handleCardClick,
-	rowIndex,
-	lastToggledButtonId,
-}) {
+export default function CountryCard({ data, handleCardClick, rowIndex }) {
 	// TODO update row index for lastToggledButton when window is resized and countries are chunked
 	const container = useRef(null);
 	const button = useRef(null);
-
-	useEffect(() => {
-		if (button.current.id === lastToggledButtonId) {
-			requestAnimationFrame(() => {
-				button.current.focus();
-			});
-		}
-	}, [button, lastToggledButtonId]);
 
 	useEffect(() => {
 		let curr = container.current;

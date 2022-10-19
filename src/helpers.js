@@ -9,7 +9,7 @@
  * @returns {boolean}
  *  true if element is focused.
  */
-function attemptFocus(element) {
+export function attemptFocus(element) {
 	if (!isFocusable(element)) {
 		return false;
 	}

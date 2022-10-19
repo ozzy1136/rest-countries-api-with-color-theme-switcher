@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { ViewportList } from "react-viewport-list";
 
-import { chunk, filterClassNames } from "../helpers";
+import { chunk, filterClassNames, attemptFocus } from "../helpers";
 import useViewportSize from "../hooks/useViewportSize";
 import CountryCard from "../CountryCard";
 
@@ -22,6 +22,17 @@ export default function CountriesList({
 	useEffect(() => {
 		if (!!countryDetails.lastToggledButton && !countryDetails.isVisible) {
 			listRef.current.scrollToIndex(countryDetails.buttonRowIndex);
+			function focusLastToggledButton() {
+				let btn = document.getElementById(
+					countryDetails.lastToggledButton
+				);
+				if (!btn) {
+					requestAnimationFrame(focusLastToggledButton);
+				} else if (!attemptFocus(btn)) {
+					requestAnimationFrame(focusLastToggledButton);
+				}
+			}
+			requestAnimationFrame(focusLastToggledButton);
 		}
 	}, [countryDetails]);
 
@@ -59,9 +70,6 @@ export default function CountriesList({
 										data={curr}
 										handleCardClick={handleCardClick}
 										rowIndex={rowIndex}
-										lastToggledButtonId={
-											countryDetails.lastToggledButton
-										}
 										key={curr.name.common}
 									/>
 								))}
