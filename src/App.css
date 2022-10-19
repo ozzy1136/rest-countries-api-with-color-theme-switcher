@@ -342,6 +342,7 @@
 .details-flag {
 	order: -1;
 	width: 100%;
+	height: fit-content;
 	aspect-ratio: 9/6;
 	background-color: var(--c-text);
 }
@@ -422,7 +423,6 @@
 @media screen and (min-width: 1250px) {
 	.details-info {
 		flex-direction: row;
-		justify-content: space-around;
 		column-gap: 8vw;
 	}
 
