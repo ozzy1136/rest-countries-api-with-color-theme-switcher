@@ -3,25 +3,32 @@
 	"tasks": [
 		{
 			"type": "npm",
+			"script": "deploy",
+			"problemMatcher": ["$eslint-stylish"],
+			"label": "deploy",
+			"detail": "gh-pages -d build"
+		},
+		{
+			"type": "npm",
 			"script": "start",
-			"problemMatcher": [],
-			"label": "npm: start",
+			"problemMatcher": ["$eslint-stylish"],
+			"label": "start",
 			"detail": "react-scripts start"
 		},
 		{
 			"type": "npm",
 			"group": "build",
 			"script": "build",
-			"problemMatcher": [],
-			"label": "npm: build",
+			"problemMatcher": ["$eslint-stylish"],
+			"label": "build",
 			"detail": "react-scripts build"
 		},
 		{
 			"type": "npm",
 			"group": "test",
 			"script": "test",
-			"problemMatcher": [],
-			"label": "npm: test",
+			"problemMatcher": ["$eslint-stylish"],
+			"label": "test",
 			"detail": "react-scripts test"
 		}
 	]
