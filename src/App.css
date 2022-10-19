@@ -274,15 +274,17 @@
 
 .card-flag {
 	width: 100%;
-	aspect-ratio: 9/6;
+	aspect-ratio: 11/7;
 	order: -1;
 	background-color: var(--c-text);
+	position: relative;
 }
 
 .card-flag-img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: fill;
+	position: absolute;
 }
 
 .card-info {
