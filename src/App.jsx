@@ -19,7 +19,7 @@ export default function App() {
 			"https://restcountries.com/v3.1/all?fields=name,tld,currencies,capital,region,subregion,languages,borders,population,flags",
 			true
 		);
-	const [darkMode, setDarkMode] = useState(true);
+	const [darkMode, setDarkMode] = useState(false);
 	const [countriesArr, updateQuery] = useCountryFilters(
 		completeCountriesList
 	);
