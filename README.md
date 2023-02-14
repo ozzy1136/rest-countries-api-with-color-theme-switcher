@@ -54,7 +54,7 @@ Additionally, figuring out where state should be managed from (e.g. input values
 
 ## Author
 
--   Website - Soon &rarr; [Ozmar Mendoza](https://ozzy1136.github.io/)
+-   Website - [Ozmar Mendoza](https://ozzy1136.github.io/)
 -   Frontend Mentor - [@ozzy1136](https://www.frontendmentor.io/profile/ozzy1136)
 -   Twitter - [@11_crack](https://www.twitter.com/11_crack)
 
